@@ -6,7 +6,7 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>Bienvenue</title>
+  <title>友链 | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -43,7 +43,7 @@
     author: "GodBMW",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
     mathjax: true,
-    page_type: ""
+    page_type: "friends"
   };
 </script>
 
@@ -106,55 +106,52 @@
 </header>
 <div id="site-process"></div>
     <main>
-      <div class="home">
+      
+  <div class="friend">
   
-    <div class="home-article-wrapper clearfix">
-      <div class="home-article" data-cover="false">
-        <div class="home-article-inner" data-cover="false">
-          <div class="passage-meta">
-            <span>
-              <i class="fa fa-calendar"></i>2018-03-01
-            </span>
-            
-              <span>
-                | <a href="/categories/Helloworld/"><i class="fa fa-bookmark"></i>Helloworld</a>
-              </span>
-            
-            
-              <span>
-                | <i class="fa fa-lock"></i>LOCK
-              </span>
-            
-          </div>
-          <h1 class="home-article-title">
-            <a href="/passages/2019-03-01-helloworld/">Hello world</a>
-          </h1>
-          <div class="home-article-content passage-article">
-            
-              <blockquote>
-<p>随着学习的深入，越来越发现构建知识体系的重要性。<br>平时积累的零碎知识，整理起来写在博客上才能理清知识之间的关系</p>
-</blockquote>
-            
-          </div>
-          <a class="home-article-read" href="/passages/2019-03-01-helloworld/">
-            README MORE >>>
-          </a>
-          
-            <div class="passage-tags">
-             
-              <a href="/tags/Markdown/"><i class="fa fa-tags"></i>Markdown</a>
-             
-              <a href="/tags/Helloworld/"><i class="fa fa-tags"></i>Helloworld</a>
-            
-            </div>
-          
-        </div>
+    <div class="friend-card-container">
+      
         
-      </div>
+        <div class="friend-card">
+          <div class="friend-card-layer">
+            <div class="friend-card-meta">
+              <p>主题作者</p>
+            </div>
+            <img class="friend-card-avatar" src="/images/friends/godbmw.jpeg">
+          </div>
+          <div class="friend-card-content">
+            <div class="friend-card-content-title">GodBMW</div>
+            <a href="https://godbmw.com/" target="_blank" class="friend-card-content-site">
+              godbmw.com
+            </a>
+          </div>
+        </div>
+      
     </div>
   
+  <article class="passage-article">
+    
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
 </div>
+
     </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -263,11 +260,11 @@
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
