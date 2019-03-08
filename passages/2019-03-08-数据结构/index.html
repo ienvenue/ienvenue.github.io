@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>递归和排序 | Bienvenue</title>
+  <title>散列表 | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="算法,算法,">
+    <meta name="keywords" content="数据结构,数据结构,">
   
 
   
-  <meta name="description" content="程序=数据结构+算法递归是一种应用非常广泛的算法。很多数据结构和算法的编码实现都要用到递归。排序算法最经典最常用的冒泡插入选择，时间复杂度都为O($n^2$)。">
+  <meta name="description" content="散列表用的是数组支持按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。可以说，如果没有数组，就没有散列表。简要的概括一下哈希表table hash_function(key){}">
 
   
 
@@ -110,11 +110,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-03-07
+      <i class="fa fa-calendar"></i>2019-03-08
     </span>
     
       <span>
-        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+        | <a href="/categories/数据结构/"><i class="fa fa-bookmark"></i>数据结构</a>
       </span>
     
     
@@ -124,106 +124,78 @@
     
   </div>
   <h1 class="passage-title">
-    递归和排序
+    散列表
   </h1>
   
   <article class="passage-article">
-    <h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><h2 id="递归需要满足的三个条件"><a href="#递归需要满足的三个条件" class="headerlink" title="递归需要满足的三个条件"></a>递归需要满足的三个条件</h2><ol>
-<li>一个问题的解可以分解为几个子问题的解</li>
-<li>这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样</li>
-<li>存在递归终止条件</li>
+    <h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><ul>
+<li>key 唯一标识，类比SQL表内主键</li>
+<li>hash function是计算出value</li>
+<li>通过value找到table的对应值</li>
+</ul>
+<h2 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h2><blockquote>
+<p>散列函数，顾名思义，它是一个函数。<br>我们可以把它定义成$hash(key)，其$中 key 表示元素的键值，$hash(key) 的$值表示经过散列函数计算得到的散列值。</p>
+</blockquote>
+<p>三点散列函数设计的基本要求：</p>
+<ol>
+<li>散列函数计算得到的散列值是一个非负整数；</li>
+<li>如果 key1 = key2，那 hash(key1) == hash(key2)；</li>
+<li>如果 key1 ≠ key2，那 hash(key1) ≠ hash(key2)。</li>
 </ol>
-<blockquote>
-<p>分成递和归来看，我觉得和多重循环类似，就是一层套一层的，只不过是每一层都完成自己的工作，递给下一层就等待归。  </p>
-</blockquote>
-<p>也就是<strong>递推式+终止条件=递归算法</strong></p>
-<blockquote>
-<p>写递归代码的关键就是找到如何将大问题分解为小问题的规律，并且基于此写出递推公式，然后再推敲终止条件，最后将递推公式和终止条件翻译成代码。</p>
-</blockquote>
-<h2 id="递归堆栈溢出问题"><a href="#递归堆栈溢出问题" class="headerlink" title="递归堆栈溢出问题"></a>递归堆栈溢出问题</h2><blockquote>
-<p>函数调用会使用栈来保存临时变量,每调用一个函数，都会将临时变量封装为栈帧压入内存栈，等函数执行完成返回时，才出栈。<br>系统栈或者虚拟机栈空间一般都不大。如果递归求解的数据规模很大，调用层次很深，一直压入栈，就会有堆栈溢出的风险。</p>
-</blockquote>
-<h2 id="递归的重复计算"><a href="#递归的重复计算" class="headerlink" title="递归的重复计算"></a>递归的重复计算</h2><blockquote>
-<p>递归之中常会出现重复计算的问题,可以通过散列表哈希来解决问题。</p>
-</blockquote>
-<h1 id="排序算法-数组"><a href="#排序算法-数组" class="headerlink" title="排序算法(数组)"></a>排序算法(数组)</h1><h2 id="衡量一个排序算法"><a href="#衡量一个排序算法" class="headerlink" title="衡量一个排序算法"></a>衡量一个排序算法</h2><h3 id="排序算法的执行效率"><a href="#排序算法的执行效率" class="headerlink" title="排序算法的执行效率"></a>排序算法的执行效率</h3><ul>
-<li>最好情况、最坏情况、平均情况时间复杂度</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>排序算法</th>
-<th>最好情况</th>
-<th>最坏情况</th>
-<th>平均情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>冒泡</td>
-<td>O($n$)</td>
-<td>O($n^2$)</td>
-<td>O($n^2$)</td>
-</tr>
-<tr>
-<td>插入</td>
-<td>O($n$)</td>
-<td>O($n^2$)</td>
-<td>O($n^2$)</td>
-</tr>
-<tr>
-<td>选择</td>
-<td>O($n^2$)</td>
-<td>O($n^2$)</td>
-<td>O($n^2$)</td>
-</tr>
-</tbody>
-</table>
+<p><code>所以完美的散列表其实是一个数组+key</code><br>即便像业界著名的MD5、SHA、CRC等哈希算法，也无法完全避免这种散列冲突。<br>而且，因为数组的存储空间有限，也会加大散列冲突的概率。</p>
+<h2 id="散列冲突"><a href="#散列冲突" class="headerlink" title="散列冲突"></a>散列冲突</h2><p>常用的散列冲突解决方法有两类</p>
 <ul>
-<li><p>时间复杂度的系数、常数 、低阶</p>
-<blockquote>
-<p>实际的软件开发中，我们排序的可能是 10 个、100 个、1000 个这样规模很小的数据，所以，在对同一阶时间复杂度的排序算法性能对比的时候，我们就要把系数、常数、低阶也考虑进来</p>
-</blockquote>
+<li>开放寻址法（open addressing）</li>
+<li>链表法（chaining）</li>
+</ul>
+<h3 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h3><ul>
+<li><p>线性探测（Linear Probing）</p>
+<ul>
+<li>在散列表内存入数据时，如果遇到了散列值相同时候，向下遍历搜索空位，然后插入（电梯算法提高效率？）。</li>
+<li>寻值的时候就是将目标值和计算出来的散列值对应的值相同，否则遍历找到最后跳出。</li>
+</ul>
 </li>
-<li><p>比较次数和交换（或移动）次数</p>
+<li><p>二次探测（Quadratic probing）</p>
 </li>
 </ul>
 <blockquote>
-<p>基于比较的排序算法的执行过程，会涉及两种操作，一种是元素比较大小，另一种是元素交换或移动。</p>
-</blockquote>
-<h3 id="排序算法的内存消耗"><a href="#排序算法的内存消耗" class="headerlink" title="排序算法的内存消耗"></a>排序算法的内存消耗</h3><p><strong>原地排序</strong>将空间复杂度为O(1)的算法称为原地排序算法</p>
-<h3 id="排序算法的稳定性"><a href="#排序算法的稳定性" class="headerlink" title="排序算法的稳定性"></a>排序算法的稳定性</h3><blockquote>
-<p>经过某种排序算法排序之后，如果相同的元素排序前后顺序没有改变，那我们就把这种排序算法叫作稳定的排序算法；如果前后顺序发生变化，那对应的排序算法就叫作不稳定的排序算法。</p>
-</blockquote>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>冒泡排序的具体过程<em>还讲个锤子</em></p>
-<ul>
-<li>原地排序</li>
-<li>稳定的排序算法</li>
-<li>时间复杂度(完全顺序,完全逆序)</li>
-</ul>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>具体过程<em>还讲个锤子</em></p>
-<ul>
-<li><p>插入排序是原地排序算法</p>
-</li>
-<li><p>插入排序是稳定的排序算法</p>
-</li>
-<li><p>插入排序的时间复杂度是多少？<br>最好最坏时间复杂度(完全顺序,完全逆序)</p>
-</li>
-</ul>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
-<p>选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。</p>
+<p>所谓二次探测，跟线性探测很像，线性探测的下标序列就是 $hash(key)+0$，$hash(key)+1$，$hash(key)+2$……而二次探测的下标序列就是 $hash(key)+0$，$hash(key)+1^2$，$hash(key)+2^2$……</p>
 </blockquote>
 <ul>
-<li><p>是原地排序算法</p>
-</li>
-<li><p>是不稳定的排序算法</p>
-</li>
-<li><p>时间复杂度是多少？<br>最好最坏时间复杂度(完全相同,因为每一个元素都需要对比)</p>
+<li>双重散列（Double hashing）</li>
+</ul>
+<blockquote>
+<p>使用一组散列函数，如果第一个散列函数计算出来没有空位就用第二个散列函数，以此类推……</p>
+</blockquote>
+<ul>
+<li>用装载因子（load factor）来表示空位多少<br><code>散列表的装载因子 = 填入表中的元素个数 / 散列表的长度</code>  <ul>
+<li>所以这可以用来衡量是否需要扩容啊，快要满的时候就可以扩容了。</li>
+</ul>
 </li>
 </ul>
-<h1 id="排序算法-链表"><a href="#排序算法-链表" class="headerlink" title="排序算法(链表)"></a>排序算法(链表)</h1><blockquote>
-<p>to be continued<br>2019年3月7日 19点59分</p>
+<h3 id="链表法"><a href="#链表法" class="headerlink" title="链表法"></a>链表法</h3><blockquote>
+<p>链表法是一种更加常用的散列冲突解决办法，相比开放寻址法，它要简单很多。在散列表中，每个“桶（bucket）”或者“槽（slot）”会对应一条链表，所有散列值相同的元素我们都放到相同槽位对应的链表中。</p>
 </blockquote>
+<ul>
+<li>我的理解<ul>
+<li>其实就是扩容散列值对应的散列表的那行的解决办法</li>
+<li>用链表的方式可以存更多的数据在这行（散列值对应的）</li>
+<li>插入散列表的时候就要找到散列值对应的槽往链表的最后面插入</li>
+<li>查找和删除就只要找到散列值对应的槽然后遍历</li>
+</ul>
+</li>
+<li>我的联想<ul>
+<li>那么既然可以用链表那也可以用其他链式结构的数据结构</li>
+<li>那么可以用顺序结构吗？<em>这样还能随机访问</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="设计散列函数"><a href="#设计散列函数" class="headerlink" title="设计散列函数"></a>设计散列函数</h2><blockquote>
+<p>首先，散列函数的设计不能太复杂。过于复杂的散列函数，势必会消耗很多计算时间，也就间接的影响到散列表的性能。其次，散列函数生成的值要尽可能随机并且均匀分布，这样才能避免或者最小化散列冲突，而且即便出现冲突，散列到每个槽里的数据也会比较平均，不会出现某个槽内数据特别多的情况。<br>实际工作中，我们还需要综合考虑各种因素。这些因素有关键字的长度、特点、分布、还有散列表的大小等。散列函数各式各样，我举几个常用的、简单的散列函数的设计方法，让你有个直观的感受。<br>实际上，散列函数的设计方法还有很多，比如直接寻址法、平方取中法、折叠法、随机数法等，这些你只要了解就行了，不需要全都掌握。（我感觉这些没有应用场景，过于苍白)</p>
+</blockquote>
+<p>to be continued<br><strong>2019年3月8日 20点28分</strong></p>
+<hr>
+<h3 id="感谢您的阅读，请指正我的错误"><a href="#感谢您的阅读，请指正我的错误" class="headerlink" title="感谢您的阅读，请指正我的错误"></a>感谢您的阅读，请指正我的错误</h3>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -231,7 +203,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#递归"><span class="toc-text">递归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#递归需要满足的三个条件"><span class="toc-text">递归需要满足的三个条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递归堆栈溢出问题"><span class="toc-text">递归堆栈溢出问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递归的重复计算"><span class="toc-text">递归的重复计算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序算法-数组"><span class="toc-text">排序算法(数组)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#衡量一个排序算法"><span class="toc-text">衡量一个排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法的执行效率"><span class="toc-text">排序算法的执行效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法的内存消耗"><span class="toc-text">排序算法的内存消耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法的稳定性"><span class="toc-text">排序算法的稳定性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序"><span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入排序"><span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序"><span class="toc-text">选择排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序算法-链表"><span class="toc-text">排序算法(链表)</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#散列表"><span class="toc-text">散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#散列函数"><span class="toc-text">散列函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列冲突"><span class="toc-text">散列冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放寻址法"><span class="toc-text">开放寻址法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链表法"><span class="toc-text">链表法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计散列函数"><span class="toc-text">设计散列函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正我的错误"><span class="toc-text">感谢您的阅读，请指正我的错误</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -240,7 +212,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-07-算法/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-08-数据结构/</a>
         </div>
       
       <div>
@@ -251,7 +223,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
+      <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
     
     </div>
   
@@ -366,10 +338,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-08-数据结构/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-06-数据结构/" data-enable="true">
+    <a href="/passages/2019-03-07-算法/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
