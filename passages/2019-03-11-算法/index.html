@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="GodBMW">
+  
+  
+  <title>归并排序和快速排序 | Bienvenue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="算法,算法,">
+  
+
+  
+  <meta name="description" content="归并排序和快速排序–两种时间复杂度为 O(nlogn) 的排序算法。这两种排序算法适合大规模的数据排序，比冒泡选择插入更加实用，这两者都用到了分治的思想。">
+
+  
+
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"FQW7SJOLcjdjDB7qfsGa8f4h-gzGzoHsz","appkey":"o7k181GzanSJKYtTdMzJFRjb","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-03-01",
+    passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
+    is_post: true,
+    lock: false,
+    author: "GodBMW",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: ""
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Bienvenue</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 不忘初心，方得始终</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/ienvenue/" target="_blank">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-11
+    </span>
+    
+      <span>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    归并排序和快速排序
+  </h1>
+  
+  <article class="passage-article">
+    <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><h2 id="归并排序的原理"><a href="#归并排序的原理" class="headerlink" title="归并排序的原理"></a>归并排序的原理</h2><blockquote>
+<p>归并排序的核心思想还是蛮简单的。如果要排序一个数组，先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。</p>
+</blockquote>
+<p>分治和递归:<br><em>分治算法一般都是用递归来实现的。分治是一种解决问题的处理思想，递归是一种编程技巧，这两者并不冲突。</em></p>
+<h3 id="先分解"><a href="#先分解" class="headerlink" title="先分解"></a>先分解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">递推公式：</span><br><span class="line">//把p-r分解成p-q和q+1-r然后递归分解，q=(p+r)/2</span><br><span class="line">merge_sort(p…r) = merge(merge_sort(p…q), merge_sort(q+1…r))</span><br><span class="line"></span><br><span class="line">终止条件：</span><br><span class="line">//保证每个都是最小元素</span><br><span class="line">p &gt;= r 不用再继续分解</span><br></pre></td></tr></table></figure>
+<h3 id="再合并"><a href="#再合并" class="headerlink" title="再合并"></a>再合并</h3><ol>
+<li>申请一个临时数组 tmp，大小与 A[p…r] 相同。用两个游标 i 和 j，分别指向 A[p…q] 和 A[q+1…r] 的第一个元素。</li>
+<li>比较这两个元素 A[i] 和 A[j]，如果 A[i]&lt;=A[j]，就把 A[i] 放入到临时数组 tmp，并且 i 后移一位，否则将 A[j] 放入到数组 tmp，j 后移一位。</li>
+<li>循环2，直到其中一个子数组中的所有数据都放入临时数组中，再把另一个数组中的数据依次加入到临时数组的末尾，</li>
+<li>再把临时数组 tmp 中的数据拷贝到原数组 A[p…r] 中。</li>
+</ol>
+<h2 id="归并排序的性能分析"><a href="#归并排序的性能分析" class="headerlink" title="归并排序的性能分析"></a>归并排序的性能分析</h2><h3 id="归并排序是稳定的排序算法"><a href="#归并排序是稳定的排序算法" class="headerlink" title="归并排序是稳定的排序算法"></a>归并排序是稳定的排序算法</h3><h3 id="归并排序的时间复杂度是-O-nlogn"><a href="#归并排序的时间复杂度是-O-nlogn" class="headerlink" title="归并排序的时间复杂度是$O(nlogn)$"></a>归并排序的时间复杂度是$O(nlogn)$</h3><h3 id="空间复杂度为-O-n"><a href="#空间复杂度为-O-n" class="headerlink" title="空间复杂度为$O(n)$"></a>空间复杂度为$O(n)$</h3><h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p><code>快速排序算法（Quicksort），简称为“快排”。快排利用的也是分治思想。</code>  </p>
+<h2 id="快速排序的原理"><a href="#快速排序的原理" class="headerlink" title="快速排序的原理"></a>快速排序的原理</h2><p><strong>快排的核心思想:</strong>  </p>
+<ol>
+<li>如果要排序数组中下标从 p 到 r 之间的一组数据，选择 p 到 r 之间的任意一个数据作为 pivot（分区点）。</li>
+<li>遍历 p 到 r 之间的数据，将小于 pivot 的放到左边，将大于 pivot 的放到右边，将 pivot 放到中间。</li>
+<li>根据分治、递归的处理思想，用递归排序下标从 p 到 q-1 之间的数据和下标从 q+1 到 r 之间的数据，直到区间缩小为 1。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">递推公式：</span><br><span class="line">//递归，分治，分成三块，递归分</span><br><span class="line">quick_sort(p…r) = quick_sort(p…q-1) + quick_sort(q+1, r)</span><br><span class="line">//直到区间到1</span><br><span class="line">终止条件：</span><br><span class="line">p &gt;= r</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序的实现"><a href="#快速排序的实现" class="headerlink" title="快速排序的实现"></a>快速排序的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 快速排序，A 是数组，n 表示数组的大小</span><br><span class="line">quick_sort(A, n)</span><br><span class="line"> &#123;</span><br><span class="line">    quick_sort_c(A, 0, n-1)</span><br><span class="line"> &#125;</span><br><span class="line">// 快速排序递归函数，p,r 为下标</span><br><span class="line">quick_sort_c(A, p, r) </span><br><span class="line">&#123;</span><br><span class="line">    if p &gt;= r then return</span><br><span class="line">    q = partition(A, p, r) // 获取分区点</span><br><span class="line">    quick_sort_c(A, p, q-1)</span><br><span class="line">    quick_sort_c(A, q+1, r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>归并排序中有一个 merge() 合并函数，<em>快速排序有一个 partition() 分区函数。</em></p>
+<ol>
+<li>通过游标 i 把 A[p…r-1] 分成两部分。A[p…i-1] 的元素都是小于 pivot 的，暂且叫它“已处理区间”，A[i…r-1] 是“未处理区间”。</li>
+<li>每次都从未处理的区间 A[i…r-1] 中取一个元素 A[j]，与 pivot 对比，如果小于 pivot，则将其加入到已处理区间的尾部，也就是 A[i] 的位置。</li>
+<li>只需要将 A[i] 与 A[j] 交换，就可以在 O(1) 时间复杂度内将 A[j] 放到下标为 i 的位置。</li>
+</ol>
+<h2 id="快速排序的性能分析"><a href="#快速排序的性能分析" class="headerlink" title="快速排序的性能分析"></a>快速排序的性能分析</h2><p>快排是一种原地、不稳定的排序算法。<br>快排的平均时间复杂度是$O(nlogn)$，最坏时间复杂度是$O(n^2)$</p>
+<p><code>to be continued</code><br><strong>2019年3月10日 23点53分</strong></p>
+<hr>
+<h3 id="感谢您的阅读，请指正我的错误"><a href="#感谢您的阅读，请指正我的错误" class="headerlink" title="感谢您的阅读，请指正我的错误"></a>感谢您的阅读，请指正我的错误</h3>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#归并排序"><span class="toc-text">归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#归并排序的原理"><span class="toc-text">归并排序的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先分解"><span class="toc-text">先分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#再合并"><span class="toc-text">再合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并排序的性能分析"><span class="toc-text">归并排序的性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序是稳定的排序算法"><span class="toc-text">归并排序是稳定的排序算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序的时间复杂度是-O-nlogn"><span class="toc-text">归并排序的时间复杂度是$O(nlogn)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空间复杂度为-O-n"><span class="toc-text">空间复杂度为$O(n)$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速排序"><span class="toc-text">快速排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序的原理"><span class="toc-text">快速排序的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序的实现"><span class="toc-text">快速排序的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序的性能分析"><span class="toc-text">快速排序的性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正我的错误"><span class="toc-text">感谢您的阅读，请指正我的错误</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-11-算法/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">网站推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">知识体系</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">数据结构</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E7%AE%97%E6%B3%95/" target="_blank">算法</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">关注我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im/user/5c6ea335e51d453a9e47304a" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://segmentfault.com/u/ienvenue" target="_blank">思否</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: chenyangjieabc@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https:/godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/images/alipay.png" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-03-10-数据结构/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
