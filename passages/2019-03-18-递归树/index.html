@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>归档: 2019/1 | Bienvenue</title>
+  <title>递归树 | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="数据结构,数据结构,树,">
   
 
   
-  <meta name="description" content="Theme-AD">
+  <meta name="description" content="递归树是树这种数据结构的一种特殊应用。将递归过程画成树，就得到递归树。">
 
   
 
@@ -38,7 +38,7 @@
     welcome: {"enable":true,"interval":30},
     start_time: "2019-03-01",
     passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "GodBMW",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -106,19 +106,108 @@
 </header>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 15篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-18
+    </span>
+    
+      <span>
+        | <a href="/categories/数据结构/"><i class="fa fa-bookmark"></i>数据结构</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    递归树
+  </h1>
   
+  <article class="passage-article">
+    <p></p>
+
+<h1 id="递归树"><a href="#递归树" class="headerlink" title="递归树"></a>递归树</h1><h2 id="递归树与时间复杂度分析"><a href="#递归树与时间复杂度分析" class="headerlink" title="递归树与时间复杂度分析"></a>递归树与时间复杂度分析</h2><ul>
+<li><p>满二叉树</p>
+<blockquote>
+<p>除了叶子节点，其他所有节点都是有左右子树（满的）</p>
+</blockquote>
+</li>
+<li><p>满二叉树的高度</p>
+<blockquote>
+<p>$2^{k-1}=n$ </p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>高度1，1个节点</li>
+<li>高度2，2个叶子节点</li>
+<li>高度3……<br><strong>高度是从叶子节点往上数</strong><br>$k=[log_2n]+1$</li>
+</ol>
+<ul>
+<li>最长路径和最短路径<blockquote>
+<p>如果一个递归树都将少的放在左边（类比搜索树）</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>最短路径就是最左节点</li>
+<li>最长路径就是最右节点</li>
+</ol>
+<h2 id="计算时间复杂度"><a href="#计算时间复杂度" class="headerlink" title="计算时间复杂度"></a>计算时间复杂度</h2><p>树的高度 h，用高度 h 乘以每一层的时间消耗 n，就可以得到总的时间复杂度 $O(nh)$。</p>
+<p>从归并排序的原理和递归树，归并排序递归树是一棵满二叉树。</p>
+<p>满二叉树的高度大约是 $log_2n$，归并排序递归实现的时间复杂度就是 $O(nlogn)$</p>
+<hr>
+<p><code>不能没有灵魂</code><br><strong>2019年3月18日 21点09分</strong></p>
+<hr>
+<h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#递归树"><span class="toc-text">递归树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#递归树与时间复杂度分析"><span class="toc-text">递归树与时间复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算时间复杂度"><span class="toc-text">计算时间复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-18-递归树/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
+     
+      <a href="/tags/树/"><i class="fa fa-tags"></i>树</a>
     
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-01-01</time>
-      <a target="_self" href="/passages/2019-03-00-模板/"></a>
     </div>
   
 </div>
+
     </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -222,16 +311,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2019-03-17-数据结构/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
