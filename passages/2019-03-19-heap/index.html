@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>递归树 | Bienvenue</title>
+  <title>Heap(堆) | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="数据结构,数据结构,树,">
+    <meta name="keywords" content="数据结构,数据结构,排序,">
   
 
   
-  <meta name="description" content="递归树是树这种数据结构的一种特殊应用。将递归过程画成树，就得到递归树。">
+  <meta name="description" content="堆是一种特殊的树堆排序是一种原地的、时间复杂度为 O(nlogn) 的排序算法">
 
   
 
@@ -110,7 +110,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-03-18
+      <i class="fa fa-calendar"></i>2019-03-19
     </span>
     
       <span>
@@ -124,44 +124,62 @@
     
   </div>
   <h1 class="passage-title">
-    递归树
+    Heap(堆)
   </h1>
   
   <article class="passage-article">
     <p></p>
 
-<h1 id="递归树"><a href="#递归树" class="headerlink" title="递归树"></a>递归树</h1><h2 id="递归树与时间复杂度分析"><a href="#递归树与时间复杂度分析" class="headerlink" title="递归树与时间复杂度分析"></a>递归树与时间复杂度分析</h2><ul>
-<li><p>满二叉树</p>
-<blockquote>
-<p>除了叶子节点，其他所有节点都是有左右子树（满的）</p>
-</blockquote>
-</li>
-<li><p>满二叉树的高度</p>
-<blockquote>
-<p>$2^{k-1}=n$ </p>
-</blockquote>
-</li>
-</ul>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><blockquote>
+<p>堆是一种特殊的树：</p>
 <ol>
-<li>高度1，1个节点</li>
-<li>高度2，2个叶子节点</li>
-<li>高度3……<br><strong>高度是从叶子节点往上数</strong><br>$k=[log_2n]+1$</li>
+<li>堆是一个完全二叉树</li>
+<li>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。</li>
 </ol>
+</blockquote>
+<p>第1点中完全二叉树要求，除了最后一层，其他层的节点个数都是满的，最后一层的节点都靠左排列。</p>
+<p>第2点中的大于等于和小于等于决定了最大堆（大顶堆）及最小堆（小顶堆）</p>
+<h2 id="堆的存储"><a href="#堆的存储" class="headerlink" title="堆的存储"></a>堆的存储</h2><p><code>用数组来存储完全二叉树</code></p>
+<blockquote>
+<p>节约空间：<br>不需要存储左右子节点的指针，单纯地通过数组的下标，就可以找到一个节点的左右子节点和父节点</p>
+</blockquote>
+<p>数组中下标为 i 的节点的左子节点，就是下标为 2i 的节点，右子节点就是下标为 2i+1 的节点，父节点就是下标为 i/2（<strong>向下取整</strong>） 的节点（<strong>数组从1开始存储</strong>）</p>
+<h2 id="堆化（heapify）"><a href="#堆化（heapify）" class="headerlink" title="堆化（heapify）"></a>堆化（heapify）</h2><p><strong>堆是有标准的，当插入或者删除数据会破坏这种标准，这是就需要进行堆化</strong><br>堆化非常简单，就是顺着节点所在的路径，向上或者向下，对比，然后交换<br>堆化有两种，<strong>从下往上</strong>和<strong>从上往下</strong>。</p>
+<blockquote>
+<p><strong>从下往上</strong>:<br>插入新数据：让新插入的节点与父节点对比大小。如果不满足子节点小于等于父节点的大小关系，互换两个节点。一直重复这个过程，直到堆中每一个节点的值都必须大于等于其子树中每个节点的值。</p>
+</blockquote>
+<p>当删除数据时候使用从下往上会产生数组空洞</p>
+<blockquote>
+<p><strong>从上往下</strong>:<br>把最后一个节点放到堆顶，然后利用同样的父子节点对比方法。对于不满足父子节点大小关系的，互换两个节点，并且重复进行这个过程，直到父子节点之间满足大小关系为止。</p>
+</blockquote>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><ol>
+<li><p>建堆：</p>
 <ul>
-<li>最长路径和最短路径<blockquote>
-<p>如果一个递归树都将少的放在左边（类比搜索树）</p>
-</blockquote>
+<li><p>第一种是在堆中插入一个元素的思路。尽管数组中包含 n 个数据，但是可以假设，起初堆中只包含一个数据，就是下标为 1 的数据。然后，调用前面讲的插入操作，将下标从 2 到 n 的数据依次插入到堆中。这样就将包含 n 个数据的数组，组织成了堆。</p>
+</li>
+<li><p>第二种实现思路，跟第一种截然相反。第一种建堆思路的处理过程是从前往后处理数组数据，并且每个数据插入堆中时，都是从下往上堆化。而第二种实现思路，是从后往前处理数组，并且每个数据都是从上往下堆化。</p>
 </li>
 </ul>
-<ol>
-<li>最短路径就是最左节点</li>
-<li>最长路径就是最右节点</li>
+</li>
+<li>排序：<ul>
+<li>大顶堆每次把根节点拿出来，就是取到最大值，把剩下的节点再堆化，循环到剩下最后一个节点。</li>
+<li>同理小顶堆也是一样的。</li>
+</ul>
+</li>
 </ol>
-<h2 id="计算时间复杂度"><a href="#计算时间复杂度" class="headerlink" title="计算时间复杂度"></a>计算时间复杂度</h2><p>树的高度 h，用高度 h 乘以每一层的时间消耗 n，就可以得到总的时间复杂度 $O(nh)$。</p>
-<p>从归并排序的原理和递归树，归并排序递归树是一棵满二叉树。</p>
-<p>满二叉树的高度大约是 $log_2n$，归并排序递归实现的时间复杂度就是 $O(nlogn)$</p>
+<h2 id="堆排序分析"><a href="#堆排序分析" class="headerlink" title="堆排序分析"></a>堆排序分析</h2><ul>
+<li>堆排序是原地排序算法</li>
+<li>堆排序包括建堆和排序两个操作，建堆过程的时间复杂度是 O(n)，排序过程的时间复杂度是 O(nlogn)，堆排序整体的时间复杂度是 O(nlogn)。</li>
+<li>堆排序不是稳定的排序算法，因为在排序的过程，存在将堆的最后一个节点跟堆顶节点互换的操作，所以就有可能改变值相同数据的原始相对顺序。</li>
+</ul>
+<h2 id="堆排序的应用"><a href="#堆排序的应用" class="headerlink" title="堆排序的应用"></a>堆排序的应用</h2><p>（mark）<br>堆的应用一：优先级队列</p>
+<ul>
+<li>合并有序小文件</li>
+<li>高性能定时器</li>
+</ul>
+<p>堆的应用二：利用堆求 Top K<br>堆的应用三：利用堆求中位数</p>
 <hr>
-<p><code>不能没有灵魂</code><br><strong>2019年3月18日 21点09分</strong></p>
+<p><code>to be continued</code><br><strong>2019年3月19日 21点26分</strong></p>
 <hr>
 <h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
   </article>
@@ -171,7 +189,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#递归树"><span class="toc-text">递归树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#递归树与时间复杂度分析"><span class="toc-text">递归树与时间复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算时间复杂度"><span class="toc-text">计算时间复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#堆"><span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆的存储"><span class="toc-text">堆的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆化（heapify）"><span class="toc-text">堆化（heapify）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序分析"><span class="toc-text">堆排序分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序的应用"><span class="toc-text">堆排序的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -180,7 +198,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-18-递归树/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-19-heap/</a>
         </div>
       
       <div>
@@ -193,7 +211,7 @@
      
       <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
      
-      <a href="/tags/树/"><i class="fa fa-tags"></i>树</a>
+      <a href="/tags/排序/"><i class="fa fa-tags"></i>排序</a>
     
     </div>
   
@@ -308,10 +326,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-19-heap/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-17-数据结构/" data-enable="true">
+    <a href="/passages/2019-03-18-递归树/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
