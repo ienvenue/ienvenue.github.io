@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="GodBMW">
+  
+  
+  <title>Graph(图) | Bienvenue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="数据结构,数据结构,树,">
+  
+
+  
+  <meta name="description" content="图，一种非线性表数据结构树，是一种特殊的图，树有层次结构">
+
+  
+
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"FQW7SJOLcjdjDB7qfsGa8f4h-gzGzoHsz","appkey":"o7k181GzanSJKYtTdMzJFRjb","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-03-01",
+    passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
+    is_post: true,
+    lock: false,
+    author: "GodBMW",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: ""
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Bienvenue</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 不忘初心，方得始终</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/ienvenue/" target="_blank">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-20
+    </span>
+    
+      <span>
+        | <a href="/categories/数据结构/"><i class="fa fa-bookmark"></i>数据结构</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Graph(图)
+  </h1>
+  
+  <article class="passage-article">
+    <p></p>
+
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>图，一种更加复杂的非线性表数据结构。</p>
+<h2 id="图的基本构成"><a href="#图的基本构成" class="headerlink" title="图的基本构成"></a>图的基本构成</h2><ul>
+<li>顶点</li>
+<li>边</li>
+<li>度<ul>
+<li>出度</li>
+<li>入度</li>
+</ul>
+</li>
+</ul>
+<h2 id="图的分类"><a href="#图的分类" class="headerlink" title="图的分类"></a>图的分类</h2><ul>
+<li>无向图</li>
+<li>有向图</li>
+<li>带权图</li>
+</ul>
+<h2 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h2><ol>
+<li>邻接矩阵（二维数组的形式，高效但占用空间大）</li>
+<li>邻接表（类似散列表，将链接的节点存储在链表中）</li>
+</ol>
+<h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><h3 id="广度优先搜索（Breadth-First-Search）"><a href="#广度优先搜索（Breadth-First-Search）" class="headerlink" title="广度优先搜索（Breadth-First-Search）"></a>广度优先搜索（Breadth-First-Search）</h3><p>广度优先搜索（Breadth-First-Search），简称为 BFS<br>原理就是一种“地毯式”层层推进的搜索策略，即先查找离起始顶点最近的，然后是次近的，依次往外搜索<br>广度优先搜索需要借助队列来实现，遍历得到的路径就是，起始顶点到终止顶点的最短路径。</p>
+<p><em>树一种特殊的图，树的层序遍历和图的bfs原理基本相同</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">queue = [node]  // 新建一个队列，并将根节点放入队列</span><br><span class="line"><span class="keyword">while</span> queue.length != <span class="number">0</span></span><br><span class="line">    item = queue.shift   // 弹出队列的头部元素</span><br><span class="line">    do_someting(item)  // 操作该节点：比如存入一个数组或者打印</span><br><span class="line">    <span class="keyword">if</span> item.left    queue.push(item.left)     // 将左子节点存入队列</span><br><span class="line">    <span class="keyword">if</span> item.right   queue.push(item.right)  // 将右子节点存入队列</span><br></pre></td></tr></table></figure></p>
+<h3 id="深度优先搜索（Depth-First-Search）"><a href="#深度优先搜索（Depth-First-Search）" class="headerlink" title="深度优先搜索（Depth-First-Search）"></a>深度优先搜索（Depth-First-Search）</h3><p>深度优先搜索（Depth-First-Search），简称 DFS<br>深度优先搜索用的是回溯思想，非常适合用递归实现。换种说法，深度优先搜索是借助栈来实现的。</p>
+<p><em>dfs对应于树的前中后序遍历，只是根节点的位置不同罢了</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ans = []  // 用一个数组来保存值</span><br><span class="line">level = <span class="number">0</span> // 根节点的level 是<span class="number">0</span></span><br><span class="line">visit(node,ans,level)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">visit</span><span class="params">(node,ans,level)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">if</span> node <span class="keyword">is</span> null  // 如果节点为空，则返回</span><br><span class="line">    //逻辑处理部分</span><br><span class="line">     <span class="keyword">if</span> ans.lengh &gt; level   //说明之前访问过该层的节点</span><br><span class="line">           ans.[level].push node.val</span><br><span class="line">     <span class="keyword">else</span>               //说明之前level没有访问过</span><br><span class="line">          ans.[level] = [node.val]</span><br><span class="line">visit (node.left, level +１,ans)</span><br><span class="line">visit (node.right, level +１,ans)</span><br></pre></td></tr></table></figure></p>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>深度优先和广度优先搜索的时间复杂度都是 O(E)，空间复杂度是 O(V)。</p>
+<hr>
+<p><code>to be continued</code><br><strong>2019年3月20日 21点34分</strong></p>
+<hr>
+<h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图"><span class="toc-text">图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#图的基本构成"><span class="toc-text">图的基本构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图的分类"><span class="toc-text">图的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图的存储"><span class="toc-text">图的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索算法"><span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#广度优先搜索（Breadth-First-Search）"><span class="toc-text">广度优先搜索（Breadth-First-Search）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度优先搜索（Depth-First-Search）"><span class="toc-text">深度优先搜索（Depth-First-Search）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-20-graph/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
+     
+      <a href="/tags/树/"><i class="fa fa-tags"></i>树</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">网站推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">知识体系</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">数据结构</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E7%AE%97%E6%B3%95/" target="_blank">算法</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">关注我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im/user/5c6ea335e51d453a9e47304a" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://segmentfault.com/u/ienvenue" target="_blank">思否</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: chenyangjieabc@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https:/godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/images/alipay.png" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-03-19-heap/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

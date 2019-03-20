@@ -172,12 +172,53 @@
 <li>堆排序包括建堆和排序两个操作，建堆过程的时间复杂度是 O(n)，排序过程的时间复杂度是 O(nlogn)，堆排序整体的时间复杂度是 O(nlogn)。</li>
 <li>堆排序不是稳定的排序算法，因为在排序的过程，存在将堆的最后一个节点跟堆顶节点互换的操作，所以就有可能改变值相同数据的原始相对顺序。</li>
 </ul>
-<h2 id="堆排序的应用"><a href="#堆排序的应用" class="headerlink" title="堆排序的应用"></a>堆排序的应用</h2><p>（mark）<br>堆的应用一：优先级队列</p>
+<h2 id="堆排序的应用"><a href="#堆排序的应用" class="headerlink" title="堆排序的应用"></a>堆排序的应用</h2><p><code>18点02分 2019年3月20日</code></p>
+<h3 id="堆的应用一：优先级队列"><a href="#堆的应用一：优先级队列" class="headerlink" title="堆的应用一：优先级队列"></a>堆的应用一：优先级队列</h3><p>优先级队列就是有优先级别的队列，先进不一定先出，按照优先级别出队。<br><em>堆的一个很大的特点就是最大/最小的值总是在堆顶</em>不管堆如何插入删除更新，只要堆化后就有这个特性。</p>
 <ul>
-<li>合并有序小文件</li>
-<li>高性能定时器</li>
+<li>合并有序小文件<ol>
+<li>取每个文件的第一个值，建堆</li>
+<li>取出堆顶</li>
+<li>将取出的堆顶所在的文件的下一个值加入堆，堆化</li>
+<li>循环，2-3直到所有数据都加入新文件</li>
+</ol>
+</li>
+<li>高性能定时器<ol>
+<li>使用堆储存要执行的任务时间</li>
+<li>任务时间-当前时间=等待时间</li>
+<li>经过等待时间执行任务，取出优先队列的栈顶</li>
+<li>循环</li>
+</ol>
+</li>
 </ul>
-<p>堆的应用二：利用堆求 Top K<br>堆的应用三：利用堆求中位数</p>
+<h3 id="堆的应用二：利用堆求-Top-K"><a href="#堆的应用二：利用堆求-Top-K" class="headerlink" title="堆的应用二：利用堆求 Top K"></a>堆的应用二：利用堆求 Top K</h3><blockquote>
+<p>一类是针对静态数据集合，也就是说数据集合事先确定，不会再变。<br>另一类是针对动态数据集合，也就是说数据集合事先并不确定，有数据动态地加入到集合中。  </p>
+<ul>
+<li>针对静态数据，建立一个大小为 K 的小顶堆，顺序遍历数组（先存入k个数据），从数组中取出取数据与堆顶元素比较。如果比堆顶元素大，把堆顶元素删除，并且将这个元素插入到堆中；如果比堆顶元素小，则不做处理，继续遍历数组。这样等数组中的数据都遍历完之后，堆中的数据就是前 K 大数据。   </li>
+<li>针对动态数据求得 Top K 就是实时 Top K。每次加入新的数据就进行对静态数据一样的操作，更好的方法就是维护一个k大的堆，每次加入新的数据直接和堆顶比较，实时返回前k大的数据。</li>
+<li>分析：遍历数组需要 O(n) 的时间复杂度，一次堆化操作需要 O(logK) 的时间复杂度，所以最坏情况下，n 个元素都入堆一次，所以时间复杂度就是 O(nlogK)。 </li>
+</ul>
+</blockquote>
+<h3 id="堆的应用三：利用堆求中位数（百分位数）"><a href="#堆的应用三：利用堆求中位数（百分位数）" class="headerlink" title="堆的应用三：利用堆求中位数（百分位数）"></a>堆的应用三：利用堆求中位数（百分位数）</h3><p>还是利用堆的特性，堆顶总是最大或者最小的，实时取得中位数</p>
+<ul>
+<li>中位数<ul>
+<li>当维护两个堆，一个大顶堆一个小顶堆时，约定：<br>如果 n 是偶数，两个堆中的数据个数都是 n/2；如果 n 是奇数，大顶堆有 n/2+1 个数据，小顶堆有 n/2 个数据。可以从一个堆中不停地将堆顶元素移动到另一个堆，循环直到满足上述约定。</li>
+</ul>
+</li>
+<li><p>百分位数</p>
+<ul>
+<li>同理，只要把参数修改成百分比</li>
+</ul>
+</li>
+<li><p>插入数据：</p>
+<ul>
+<li>每次插入一个数据的时候，判断这个数据跟大顶堆和小顶堆堆顶数据的大小关系，然后决定插入到哪个堆中。如果这个新插入的数据比大顶堆的堆顶数据小，那就插入大顶堆；如果这个新插入的数据比小顶堆的堆顶数据大，那就插入小顶堆。</li>
+</ul>
+</li>
+<li>删除数据：<ul>
+<li>删除数据，先找到数据，然后删除，堆化，按约定调整，直到满足约定</li>
+</ul>
+</li>
+</ul>
 <hr>
 <p><code>to be continued</code><br><strong>2019年3月19日 21点26分</strong></p>
 <hr>
@@ -189,7 +230,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#堆"><span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆的存储"><span class="toc-text">堆的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆化（heapify）"><span class="toc-text">堆化（heapify）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序分析"><span class="toc-text">堆排序分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序的应用"><span class="toc-text">堆排序的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#堆"><span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆的存储"><span class="toc-text">堆的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆化（heapify）"><span class="toc-text">堆化（heapify）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序分析"><span class="toc-text">堆排序分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序的应用"><span class="toc-text">堆排序的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的应用一：优先级队列"><span class="toc-text">堆的应用一：优先级队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的应用二：利用堆求-Top-K"><span class="toc-text">堆的应用二：利用堆求 Top K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的应用三：利用堆求中位数（百分位数）"><span class="toc-text">堆的应用三：利用堆求中位数（百分位数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -326,7 +367,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2019-03-20-graph/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/passages/2019-03-18-递归树/" data-enable="true">
