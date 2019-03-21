@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>Bienvenue</title>
+  <title>Subarray Sum Equals K | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="leetcode,leetcode,array,">
   
 
   
-  <meta name="description" content="Theme-AD">
+  <meta name="description" content="leetcode.560Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.">
 
   
 
@@ -113,6 +113,10 @@
       <i class="fa fa-calendar"></i>2019-01-01
     </span>
     
+      <span>
+        | <a href="/categories/leetcode/"><i class="fa fa-bookmark"></i>leetcode</a>
+      </span>
+    
     
       <span>
         | <i class="fa fa-unlock-alt"></i>UNLOCK
@@ -120,12 +124,19 @@
     
   </div>
   <h1 class="passage-title">
-    
+    Subarray Sum Equals K
   </h1>
   
   <article class="passage-article">
-    <hr>
-<p><code>to be continued</code><br><strong>日期 时间</strong></p>
+    <p></p>
+
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ol>
+<li>去除重复计算，将三次循环变为两次</li>
+<li>使用C++ STL map，只需要一次循环<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">subarraySumbytempSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; nums.size(); start++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tempsum = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> end = start; end &lt; nums.size(); end++)</span><br><span class="line">			&#123;</span><br><span class="line">				tempsum += nums[end];</span><br><span class="line">				<span class="keyword">if</span> (tempsum == k)</span><br><span class="line">				&#123;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">subarraySumbyMap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; sumMap;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">		sumMap[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//第一次等于k时，对应的map</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum += nums[i];</span><br><span class="line">			<span class="keyword">if</span> (sumMap.count(sum - k))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//count++;count++无法计算出连续0情况的次数</span></span><br><span class="line">				count += sumMap[sum - k];<span class="comment">//存储出现次数，解决出现连续0问题</span></span><br><span class="line">			&#125;</span><br><span class="line">			sumMap[sum]++; </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; test1 = &#123; <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">2</span>;</span><br><span class="line">	Solution s;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s.subarraySumbyMap(test1, k) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s.subarraySumbytempSum(test1, k) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p><code>to be continued</code><br><strong>2019年3月21日 23点57分</strong></p>
 <hr>
 <h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
   </article>
@@ -135,7 +146,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol>
   </div>
 </aside>
   
@@ -144,7 +155,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-00-模板/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-21-leetcode/</a>
         </div>
       
       <div>
@@ -152,6 +163,14 @@
       </div>
     </aside>
   
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/leetcode/"><i class="fa fa-tags"></i>leetcode</a>
+     
+      <a href="/tags/array/"><i class="fa fa-tags"></i>array</a>
+    
+    </div>
   
 </div>
 
@@ -264,10 +283,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-01-helloworld/" data-enable="true">
+    <a href="/passages/2019-03-00-模板/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-21-leetcode/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
