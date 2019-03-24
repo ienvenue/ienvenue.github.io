@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>Two Sum IV - Input is a BST | Bienvenue</title>
+  <title>Partition Array Into Three Parts With Equal Sum | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="leetcode,leetcode,tree,">
+    <meta name="keywords" content="leetcode,leetcode,array,contest,">
   
 
   
-  <meta name="description" content="leetcode  No.653遍历一个二叉搜索树，BSF,DSF(前序遍历，中序遍历，后序遍历)，BST的中序遍历后元素有序">
+  <meta name="description" content="leetcode  No.1020Given an array A of integers, return true if and only if we can partition the array into three non-empty parts with equal sums.">
 
   
 
@@ -110,7 +110,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-03-23
+      <i class="fa fa-calendar"></i>2019-03-24
     </span>
     
       <span>
@@ -124,22 +124,22 @@
     
   </div>
   <h1 class="passage-title">
-    Two Sum IV - Input is a BST
+    Partition Array Into Three Parts With Equal Sum
   </h1>
   
   <article class="passage-article">
-    <h1 id="No-653-Solution"><a href="#No-653-Solution" class="headerlink" title="No. 653 Solution"></a>No. 653 Solution</h1><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ol>
-<li>使用Hash set 和 DFS遍历<ul>
-<li>Time complexity : $O(n)$. The entire tree is traversed only once in the worst case. Here, $n​$ refers to the number of nodes in the given tree.</li>
-<li>时间复杂度为 : $O(n)$。最坏情况下，也就是整个树都遍历一次。这里的$n​$是指整个树的节点数量。</li>
-<li>Space complexity : $O(n)$. The size of the set can grow upto $n$ in the worst case.</li>
-<li>空间复杂度：$O(n)​$。最坏情况下 <em>set</em> 的大小会增大到$n​$。</li>
+    <h1 id="No-1020-Solution"><a href="#No-1020-Solution" class="headerlink" title="No. 1020 Solution"></a>No. 1020 Solution</h1><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ol>
+<li>把一个数组分成三个和相等的部分，也就是三个部分都等于1/3的总和<ul>
+<li>Time complexity : $O(n)$. The entire array is traversed only once in the worst case. Here, $n$ refers to the number of element in the given array.</li>
+<li>时间复杂度为 : $O(n )$。最坏情况下也只是遍历一遍整个数组，n是所给数组的元素个数。</li>
+<li>Space complexity : $O(1)$. </li>
+<li>空间复杂度：$O(1 )$。</li>
 </ul>
 </li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">findTarget</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="keyword">return</span> find(root,k,<span class="built_in">set</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">find</span><span class="params">(TreeNode* root,<span class="keyword">int</span> k,<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; &amp;<span class="built_in">set</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">set</span>.count(k-root-&gt;val))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">set</span>.insert(root-&gt;val);</span><br><span class="line">        <span class="keyword">return</span> find(root-&gt;left,k,<span class="built_in">set</span>)||find(root-&gt;right,k,<span class="built_in">set</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">canThreePartsEqualSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> length = A.size();</span><br><span class="line">		<span class="keyword">int</span> start, end=length<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">bool</span> exist=<span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> middle, sum = <span class="number">0</span>, leftsum = <span class="number">0</span>, middlesum = <span class="number">0</span>, rightsum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum += A[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (sum % <span class="number">3</span> != <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> partsum = sum / <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">for</span> (start = <span class="number">0</span>; start &lt; length - <span class="number">2</span>; start++)</span><br><span class="line">		&#123;</span><br><span class="line">			leftsum += A[start];</span><br><span class="line">			<span class="keyword">if</span> (leftsum==partsum)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (end = length - <span class="number">1</span>; end &gt; start + <span class="number">1</span>; end--)</span><br><span class="line">				&#123;</span><br><span class="line">					rightsum += A[end];</span><br><span class="line">					<span class="keyword">if</span> (rightsum==leftsum)</span><br><span class="line">					&#123;</span><br><span class="line">						middlesum = sum - leftsum - rightsum;</span><br><span class="line">						<span class="keyword">if</span> (leftsum == rightsum &amp;&amp; rightsum == middlesum)</span><br><span class="line">						&#123;</span><br><span class="line">							exist = <span class="literal">true</span>;</span><br><span class="line">							<span class="keyword">return</span> exist;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;	</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (start == end - <span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				rightsum = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> exist;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <hr>
-<p><code>to be continued</code><br><strong>2019年3月23日 23点20分</strong></p>
+<p><code>to be continued</code><br><strong>2019年3月24日 21点44分</strong></p>
 <hr>
 <h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
   </article>
@@ -149,7 +149,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#No-653-Solution"><span class="toc-text">No. 653 Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#No-1020-Solution"><span class="toc-text">No. 1020 Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -158,7 +158,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-23-leetcode/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-24-leetcode/</a>
         </div>
       
       <div>
@@ -171,7 +171,9 @@
      
       <a href="/tags/leetcode/"><i class="fa fa-tags"></i>leetcode</a>
      
-      <a href="/tags/tree/"><i class="fa fa-tags"></i>tree</a>
+      <a href="/tags/array/"><i class="fa fa-tags"></i>array</a>
+     
+      <a href="/tags/contest/"><i class="fa fa-tags"></i>contest</a>
     
     </div>
   
@@ -286,10 +288,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-24-leetcode/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-22-leetcode/" data-enable="true">
+    <a href="/passages/2019-03-23-leetcode/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
