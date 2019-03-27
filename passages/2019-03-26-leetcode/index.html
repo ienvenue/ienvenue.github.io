@@ -6,16 +6,16 @@
   <meta name="author" content="GodBMW">
   
   
-  <title>Bienvenue</title>
+  <title> 两数之和 IV - 输入 BST | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="leetcode,leetcode,BFS,">
   
 
   
-  <meta name="description" content="head">
+  <meta name="description" content="使用了BFS，解决两数之和的输入是BST的问题">
 
   
 
@@ -110,8 +110,12 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-01-01
+      <i class="fa fa-calendar"></i>2019-03-26
     </span>
+    
+      <span>
+        | <a href="/categories/leetcode/"><i class="fa fa-bookmark"></i>leetcode</a>
+      </span>
     
     
       <span>
@@ -120,13 +124,22 @@
     
   </div>
   <h1 class="passage-title">
-    
+     两数之和 IV - 输入 BST
   </h1>
   
   <article class="passage-article">
-    <p>body</p>
+    <h2 id="No-653-Solution"><a href="#No-653-Solution" class="headerlink" title="No. 653 Solution"></a>No. 653 Solution</h2><h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>In this approach, the idea of using the <em>set</em> is the same as in the last approach. But, we can carry on the traversal in a Breadth First Search manner, which is a very common traversal method used in Trees. The way BFS is used can be summarized as given below. We start by putting the root node into a <em>queue</em>. We also maintain a <em>set</em> similar to the last approach. Then, at every step, we do as follows:</p>
+<ol>
+<li>Remove an element, <em>p</em>, from the front of the <em>queue</em>.</li>
+<li>Check if the element $ k-p $ already exists in the <em>set</em>. If so, return True.</li>
+<li>Otherwise, add this element, <em>p</em> to the <em>set</em>. Further, add the right and the left child nodes of the current node to the back of the <em>queue</em>.</li>
+<li>Continue steps 1. to 3. till the <em>queue</em> becomes empty.</li>
+<li>Return false if the <em>queue</em> becomes empty.</li>
+</ol>
+<p>By following this process, we traverse the tree on a level by level basis.</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">findTarget</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; <span class="built_in">queue</span>;</span><br><span class="line">        <span class="built_in">queue</span>.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!<span class="built_in">queue</span>.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">queue</span>.front() != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                TreeNode* node = <span class="built_in">queue</span>.front();</span><br><span class="line">                <span class="built_in">queue</span>.pop();</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">set</span>.count(k - node-&gt;val))</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                <span class="built_in">set</span>.insert(node-&gt;val);</span><br><span class="line">                <span class="built_in">queue</span>.push(node-&gt;right);</span><br><span class="line">                <span class="built_in">queue</span>.push(node-&gt;left);</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">queue</span>.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <hr>
-<p><code>to be continued</code><br><strong>日期 时间</strong></p>
+<p><code>to be continued</code><br><strong>2019年3月26日 23点22分</strong></p>
 <hr>
 <h3 id="感谢您的阅读，请指正的错误"><a href="#感谢您的阅读，请指正的错误" class="headerlink" title="感谢您的阅读，请指正的错误"></a>感谢您的阅读，请指正的错误</h3>
   </article>
@@ -136,7 +149,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#No-653-Solution"><span class="toc-text">No. 653 Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Algorithm"><span class="toc-text">Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#code"><span class="toc-text">code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正的错误"><span class="toc-text">感谢您的阅读，请指正的错误</span></a></li></ol></li></ol>
   </div>
 </aside>
   
@@ -153,6 +166,14 @@
       </div>
     </aside>
   
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/leetcode/"><i class="fa fa-tags"></i>leetcode</a>
+     
+      <a href="/tags/BFS/"><i class="fa fa-tags"></i>BFS</a>
+    
+    </div>
   
 </div>
 
@@ -265,10 +286,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-01-helloworld/" data-enable="true">
+    <a href="/passages/2019-03-27-linux/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2019-03-25-interview/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
