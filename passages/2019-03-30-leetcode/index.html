@@ -6,16 +6,16 @@
   <meta name="author" content="Yancy">
   
   
-  <title>第十三周ARTS | Bienvenue</title>
+  <title>Squares of a Sorted Array | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="ARTS,ARTS,">
+    <meta name="keywords" content="leetcode,leetcode,two-pointer,">
   
 
   
-  <meta name="description" content="Algorithm    Leetcode No.94,144,145       Review     The Key To Accelerating Your Coding SkillsTips          Morris Traversal                                          Share       打造高效的工作环境 – SHELL 篇">
+  <meta name="description" content="Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order. Leetcode No.977 两种解决方法：1. 排序   2.双指针">
 
   
 
@@ -110,11 +110,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-03-29
+      <i class="fa fa-calendar"></i>2019-03-30
     </span>
     
       <span>
-        | <a href="/categories/ARTS/"><i class="fa fa-bookmark"></i>ARTS</a>
+        | <a href="/categories/leetcode/"><i class="fa fa-bookmark"></i>leetcode</a>
       </span>
     
     
@@ -124,67 +124,25 @@
     
   </div>
   <h1 class="passage-title">
-    第十三周ARTS
+    Squares of a Sorted Array
   </h1>
   
   <article class="passage-article">
-    <h1 id="ARTS"><a href="#ARTS" class="headerlink" title="ARTS"></a>ARTS</h1><h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>Leetcode No.94,144,145</p>
-<p><em>对应前序、中序、后序遍历</em></p>
-<p>针对「二叉树的遍历」的练习</p>
-<p><a href="https://ienvenue.github.io/passages/2019-03-28-leetcode/">leetcode No.94</a></p>
+    <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Approach-1-Sort"><a href="#Approach-1-Sort" class="headerlink" title="Approach 1: Sort"></a>Approach 1: Sort</h2><p><strong>Complexity Analysis</strong></p>
 <ul>
-<li>二叉树的三种遍历都可以用三种方法实现<ul>
-<li>递归</li>
-<li>迭代</li>
-<li>Morris(莫里斯遍历)，最为特殊，空间复杂度为$O(1)$</li>
+<li>Time Complexity: O(nlogn) where <code>n</code> is the length of <code>A</code>.</li>
+<li>Space Complexity: O(n).</li>
 </ul>
-</li>
-</ul>
-<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p> <a href="http://blog.thefirehoseproject.com/posts/learn-to-code-and-be-self-reliant/" target="_blank" rel="noopener">The Key To Accelerating Your Coding Skills</a></p>
-<blockquote>
-<p>文章主要讲了认识编程的拐点，加速编程阶段</p>
-<p>初学者应该注重细节和报错信息（耐心）</p>
-<p>遇到拐点（瓶颈）的时候要调整心态（决心）</p>
-<p>编程是一种终身学习体验（恒心）</p>
-</blockquote>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/148939/CPP-Morris-Traversal" target="_blank" rel="noopener">Morris Traversal</a> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortedSquares(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;A .size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			A[i] = <span class="built_in">pow</span>(A[i], <span class="number">2.0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		sort(A.begin(), A.end());</span><br><span class="line">		<span class="keyword">return</span> A;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="Approach-2-Two-Pointer"><a href="#Approach-2-Two-Pointer" class="headerlink" title="Approach 2: Two Pointer"></a>Approach 2: Two Pointer</h4><p><strong>Complexity Analysis</strong></p>
 <ul>
-<li>参考链接(link)<ul>
-<li><a href="https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/" target="_blank" rel="noopener">Morris Traversal </a>莫里斯遍历各语言实现</li>
-<li><a href="https://en.wikipedia.org/wiki/Threaded_binary_tree" target="_blank" rel="noopener">Threaded Binary Tree</a> 维基百科对线索二叉树的解释</li>
+<li>Time Complexity: O(n)</li>
+<li>Space Complexity: O(n). </li>
 </ul>
-</li>
-<li>复杂度分析(complexity)<ul>
-<li>O(n) Time | O(1) Space</li>
-</ul>
-</li>
-<li>流程<ul>
-<li>如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。</li>
-<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。<ul>
-<li>如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子</li>
-<li>如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空（恢复树的形状）。输出当前节点。当前节点更新为当前节点的右孩子。</li>
-</ul>
-</li>
-<li>重复以上步骤直到当前节点为空。</li>
-</ul>
-</li>
-<li>空间复杂度<ul>
-<li>通过线索二叉树这种数据结构，增加前驱指针，不需要额外申请空间的情况下解决了遍历二叉树的问题</li>
-</ul>
-</li>
-<li>时间复杂度<ul>
-<li>O(n)时间内完成</li>
-</ul>
-</li>
-</ul>
-<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p> <a href="https://coolshell.cn/articles/19219.html" target="_blank" rel="noopener">打造高效的工作环境 – SHELL 篇</a></p>
-<p>学习Linux必须掌握的两大内容</p>
-<ol>
-<li>命令行</li>
-<li>Shell和脚本</li>
-</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sortedSquares(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">		<span class="keyword">int</span> end = A.size() - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (start &lt; end)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">abs</span>(A[start]) &gt; <span class="built_in">abs</span>(A[end]))</span><br><span class="line">			&#123;</span><br><span class="line">				swap(A[start], A[end]);</span><br><span class="line">				A[end] = <span class="built_in">pow</span>(A[end], <span class="number">2.0</span>);</span><br><span class="line">				end--;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				A[end] = <span class="built_in">pow</span>(A[end], <span class="number">2.0</span>);</span><br><span class="line">				end--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> A;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>我的双指针好像废掉了一半。。。逻辑错误。</p>
 <hr>
-<p><code>to be continued</code><br><strong>2019年3月29日 23点09分</strong></p>
+<p><code>to be continued</code><br><strong>2019年3月30日 22点00分</strong></p>
 <hr>
 <h1 id="感谢您的阅读，请指正出错误"><a href="#感谢您的阅读，请指正出错误" class="headerlink" title="感谢您的阅读，请指正出错误"></a>感谢您的阅读，请指正出错误</h1>
   </article>
@@ -194,7 +152,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARTS"><span class="toc-text">ARTS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Algorithm"><span class="toc-text">Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review"><span class="toc-text">Review</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Share"><span class="toc-text">Share</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Approach-1-Sort"><span class="toc-text">Approach 1: Sort</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Approach-2-Two-Pointer"><span class="toc-text">Approach 2: Two Pointer</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li>
   </div>
 </aside>
   
@@ -203,7 +161,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-29-ARTS/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-30-leetcode/</a>
         </div>
       
       <div>
@@ -214,7 +172,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/ARTS/"><i class="fa fa-tags"></i>ARTS</a>
+      <a href="/tags/leetcode/"><i class="fa fa-tags"></i>leetcode</a>
+     
+      <a href="/tags/two-pointer/"><i class="fa fa-tags"></i>two-pointer</a>
     
     </div>
   
@@ -329,10 +289,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-30-leetcode/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-28-leetcode/" data-enable="true">
+    <a href="/passages/2019-03-29-ARTS/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
