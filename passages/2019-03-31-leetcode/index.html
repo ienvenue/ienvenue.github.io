@@ -6,16 +6,16 @@
   <meta name="author" content="Yancy">
   
   
-  <title>归档 | Bienvenue</title>
+  <title>Binary Prefix Divisible By 5 | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="leetcode,leetcode,contest,">
   
 
   
-  <meta name="description" content="Theme-AD">
+  <meta name="description" content="Given an array A of 0s and 1s, consider N_i: the i-th subarray from A[0] to A[i] interpreted as a binary number (from most-significant-bit to least-significant-bit.)Return a list of booleans answer, where answer[i] is true if and only if N_i is divisible by 5.">
 
   
 
@@ -38,7 +38,7 @@
     welcome: {"enable":true,"interval":30},
     start_time: "2019-03-01",
     passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Yancy",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -106,73 +106,77 @@
 </header>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 27篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-31
+    </span>
+    
+      <span>
+        | <a href="/categories/leetcode/"><i class="fa fa-bookmark"></i>leetcode</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Binary Prefix Divisible By 5
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-03-31</time>
-      <a target="_self" href="/passages/2019-03-31-leetcode/">Binary Prefix Divisible By 5</a>
-    </div>
+  <article class="passage-article">
+    <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; prefixesDivBy5(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">       <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">	   <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vec(A.size(),<span class="literal">false</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			temp = temp &lt;&lt; <span class="number">1</span>;</span><br><span class="line">			temp += A[i];</span><br><span class="line">			<span class="keyword">if</span> (temp&gt;=<span class="number">5</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				temp -= <span class="number">5</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (temp==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				vec[i] = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> vec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><code>to be continued</code><br><strong>2019年3月31日 21点44分</strong></p>
+<hr>
+<h1 id="感谢您的阅读，请指正出错误"><a href="#感谢您的阅读，请指正出错误" class="headerlink" title="感谢您的阅读，请指正出错误"></a>感谢您的阅读，请指正出错误</h1>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-03-30</time>
-      <a target="_self" href="/passages/2019-03-30-leetcode/">Squares of a Sorted Array</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-31-leetcode/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-03-29</time>
-      <a target="_self" href="/passages/2019-03-29-ARTS/">第十三周ARTS</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/leetcode/"><i class="fa fa-tags"></i>leetcode</a>
+     
+      <a href="/tags/contest/"><i class="fa fa-tags"></i>contest</a>
     
-    <div class="timeline-item">
-      <time>2019-03-28</time>
-      <a target="_self" href="/passages/2019-03-28-leetcode/">Binary Tree Traversal</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-27</time>
-      <a target="_self" href="/passages/2019-03-27-linux/">为什么要学Linux操作系统</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-26</time>
-      <a target="_self" href="/passages/2019-03-26-leetcode/"> 两数之和 IV - 输入 BST</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-25</time>
-      <a target="_self" href="/passages/2019-03-25-interview/">Review March</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-24</time>
-      <a target="_self" href="/passages/2019-03-24-leetcode/">Partition Array Into Three Parts With Equal Sum</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-23</time>
-      <a target="_self" href="/passages/2019-03-23-leetcode/">Two Sum IV - Input is a BST</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-22</time>
-      <a target="_self" href="/passages/2019-03-22-leetcode/">Two Sum</a>
     </div>
   
 </div>
+
     </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -276,16 +280,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/archives/page/2/" data-enable="true">
+    <a href="/passages/2019-03-30-leetcode/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
