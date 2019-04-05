@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Yancy">
+  
+  
+  <title>DOMJudge | Bienvenue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="DOMJudge,DOMJudge,Linux,">
+  
+
+  
+  <meta name="description" content="DOMJudge是ACM  ICPC使用的代码评测系统(OJ)的开源项目，学习在Linux环境下，如何部署DOMJudge并对其进行修改是近期需要完成的任务。">
+
+  
+
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"FQW7SJOLcjdjDB7qfsGa8f4h-gzGzoHsz","appkey":"o7k181GzanSJKYtTdMzJFRjb","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-03-01",
+    passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
+    is_post: true,
+    lock: false,
+    author: "Yancy",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: ""
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Bienvenue</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 不忘初心，方得始终</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/ienvenue/" target="_blank">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-04-05
+    </span>
+    
+      <span>
+        | <a href="/categories/DOMJudge/"><i class="fa fa-bookmark"></i>DOMJudge</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    DOMJudge
+  </h1>
+  
+  <article class="passage-article">
+    <h1 id="DOMJudge"><a href="#DOMJudge" class="headerlink" title="DOMJudge"></a>DOMJudge</h1><h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><ul>
+<li><a href="http://www.algorithms2019.com/" target="_blank" rel="noopener">http://www.algorithms2019.com</a><ul>
+<li>在Ubuntu下运行DOMJudge_Docker</li>
+</ul>
+</li>
+</ul>
+<h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><ul>
+<li><a href="https://www.domjudge.org/demoweb/api/doc" target="_blank" rel="noopener">https://www.domjudge.org/demoweb/api/doc</a><ul>
+<li>DOMJudge的api文档</li>
+</ul>
+</li>
+<li>This is a (rough) list of the requirements for DOMjudge.DOMJudge需要的环境<ul>
+<li>At least one machine running Linux, with (sudo) root access</li>
+<li>Apache web server with PHP 5.3.3 or newer and PHP-command line interface</li>
+<li>MySQL or MariaDB database server version 5.3.3 or newer</li>
+<li>Compilers for the languages you want to support</li>
+</ul>
+</li>
+<li>安装步骤<ul>
+<li>Install the MySQL-server and set a root password for it.</li>
+<li>Install Apache, PHP and (recommended) phpMyAdmin.</li>
+<li>Make sure PHP works for the web server and command line scripts.</li>
+<li>Install necessary compilers on the judgehosts.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="一、-总"><a href="#一、-总" class="headerlink" title="一、 总"></a>一、 总</h2><p>​      操作系统像一家软件外包公司，内核就是这家公司的老板。所以接下来整个课程中，请将自己想象成这家公司的老板，设身处地的去理解操作系统是如何协调各种资源，帮客户办成事情。</p>
+<h2 id="二、知识点"><a href="#二、知识点" class="headerlink" title="二、知识点"></a>二、知识点</h2><p>1、内核通过协调操作系统各种资源，实现各种功能；自补充：系统资源最终还是指时间和空间资源。<br>2、内核通过系统调用、文件管理子系统、进程管理子系统、内存管理子系统、网络管理子系统、设备子系统协调和管理着操作系统的各项源，是完成协调工作的具体实现载体。<br>3、系统调用是系统功能调用的统一入口，相当于办事大厅，项目请求公司资源的统一入口<br>4、进程管理子系统管理进程生命周期和资源，相当于项目管理系统，管理项目生命周期和资源<br>5、内存管理子系统对内存进行管理、分配、回收、隔离，相当于会议室管理系统<br>6、文件子系统管理文件，相当于档案管理系统，管理项目文档资料<br>7、设备子系统管理输入输出设备，相当于客户对接人和交付人员，管理项目的输入输出<br>8、网络子系统，网络协议栈和收发网络包，相当于对外合作部，需要和其他公司合作沟通项目</p>
+<h2 id="三、记忆理解"><a href="#三、记忆理解" class="headerlink" title="三、记忆理解"></a>三、记忆理解</h2><p><img src="https://app.yinxiang.com/shard/s38/res/6f654cef-2820-463e-b857-192768177506/e15954f1371a4c782f028202dce1f84a.jpeg" alt="2019/04/05"></p>
+<h2 id="四、理解鼠标双击QQ，操作系统干了什么"><a href="#四、理解鼠标双击QQ，操作系统干了什么" class="headerlink" title="四、理解鼠标双击QQ，操作系统干了什么"></a>四、理解鼠标双击QQ，操作系统干了什么</h2><p>1、鼠标是输入设备，鼠标驱动负责鼠标与设备子系统通信；<br>2、鼠标双击QQ图标时，鼠标发送硬中断，内核执行硬中断处理函数，快速处理硬中断信息，将鼠标双击QQ的必要信息和数据复制到内存，调起软中断处理函数，结束硬中断，软中断执行硬中断未完成后续任务；<br>3、软中断唤起1号进程，1号进程进入CPU，根据传入的信息，知道QQ程序存放虚拟文件系统位置，实际是把位置信息从内存装载到CPU寄存器中，然后创建新进程，即QQ进程；<br>4、创建QQ进程，QQ进程进入就绪状态，被调入CPU运行处于运行状态，根据程序这个计划书，加载相应数据到内存，执行二进制的指令；<br>5、QQ启动后需要显示到显示器，QQ程序调用系统调用，QQ陷入内核态，操作硬件资源的代码都是内核态代码，也就是内核函数，产生软中断事件，告诉显示卡驱动程序，要在显示器什么位置现实QQ的登录框，显卡驱动程序收到指令和数据后，立即回应QQ进程，QQ进程让出CPU处于等待状态；显卡驱动继续协调显卡芯片、显卡内存处理显示数据，最终由显卡将QQ登录框显示在显示器上，同时产生硬中断事件，告诉QQ进程显示完成，QQ进程从等待状态恢复到就绪状态，等待用户的输入产生硬中断，再次被调入CPU执行功能。就可以愉快的聊天了。</p>
+<hr>
+<p><code>to be continued</code><br><strong>2019年4月5日 20点04分</strong></p>
+<hr>
+<h1 id="感谢您的阅读，请指正出错误"><a href="#感谢您的阅读，请指正出错误" class="headerlink" title="感谢您的阅读，请指正出错误"></a>感谢您的阅读，请指正出错误</h1>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DOMJudge"><span class="toc-text">DOMJudge</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document"><span class="toc-text">document</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux"><span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、-总"><span class="toc-text">一、 总</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、知识点"><span class="toc-text">二、知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、记忆理解"><span class="toc-text">三、记忆理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、理解鼠标双击QQ，操作系统干了什么"><span class="toc-text">四、理解鼠标双击QQ，操作系统干了什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-04-05-DOMJudge0/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/DOMJudge/"><i class="fa fa-tags"></i>DOMJudge</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">网站推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">知识体系</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">数据结构</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E7%AE%97%E6%B3%95/" target="_blank">算法</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">关注我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im/user/5c6ea335e51d453a9e47304a" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://segmentfault.com/u/ienvenue" target="_blank">思否</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: chenyangjieabc@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https:/godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/images/alipay.png" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-04-04-c++ /" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
