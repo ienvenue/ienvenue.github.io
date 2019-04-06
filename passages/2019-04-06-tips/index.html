@@ -6,16 +6,16 @@
   <meta name="author" content="Yancy">
   
   
-  <title>散列表 | Bienvenue</title>
+  <title>网页滚动截图 | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="数据结构,数据结构,">
+    <meta name="keywords" content="tips,tips,">
   
 
   
-  <meta name="description" content="散列表用的是数组支持按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。可以说，如果没有数组，就没有散列表。简要的概括一下哈希表table hash_function(key){}">
+  <meta name="description" content=" 实现长网页滚动（全）截图的三种方法">
 
   
 
@@ -110,11 +110,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-03-08
+      <i class="fa fa-calendar"></i>2019-04-06
     </span>
     
       <span>
-        | <a href="/categories/数据结构/"><i class="fa fa-bookmark"></i>数据结构</a>
+        | <a href="/categories/tips/"><i class="fa fa-bookmark"></i>tips</a>
       </span>
     
     
@@ -124,78 +124,48 @@
     
   </div>
   <h1 class="passage-title">
-    散列表
+    网页滚动截图
   </h1>
   
   <article class="passage-article">
-    <h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><ul>
-<li>key 唯一标识，类比SQL表内主键</li>
-<li>hash function是计算出value</li>
-<li>通过value找到table的对应值</li>
-</ul>
-<h2 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h2><blockquote>
-<p>散列函数，顾名思义，它是一个函数。<br>我们可以把它定义成hash(key)，其中 key 表示元素的键值，hash(key) 的值表示经过散列函数计算得到的散列值。</p>
+    <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><blockquote>
+<p>起因是同学找我帮忙访问一下墙外（Google），由于网页太长我迫不得已去做了长图</p>
 </blockquote>
-<p>三点散列函数设计的基本要求：</p>
-<ol>
-<li>散列函数计算得到的散列值是一个非负整数；</li>
-<li>如果 key1 = key2，那 hash(key1) == hash(key2)；</li>
-<li>如果 key1 ≠ key2，那 hash(key1) ≠ hash(key2)。</li>
-</ol>
-<p><code>所以完美的散列表其实是一个数组+key</code><br>即便像业界著名的MD5、SHA、CRC等哈希算法，也无法完全避免这种散列冲突。<br>而且，因为数组的存储空间有限，也会加大散列冲突的概率。</p>
-<h2 id="散列冲突"><a href="#散列冲突" class="headerlink" title="散列冲突"></a>散列冲突</h2><p>常用的散列冲突解决方法有两类</p>
-<ul>
-<li>开放寻址法（open addressing）</li>
-<li>链表法（chaining）</li>
-</ul>
-<h3 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h3><ul>
-<li><p>线性探测（Linear Probing）</p>
-<ul>
-<li>在散列表内存入数据时，如果遇到了散列值相同时候，向下遍历搜索空位，然后插入（电梯算法提高效率？）。</li>
-<li>寻值的时候就是将目标值和计算出来的散列值对应的值相同，否则遍历找到最后跳出。</li>
+<p><img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t737i080j30hs1kn40k.jpg" alt="2019040601"></p>
+<p><code>这里我就提到了最方便的方法了</code></p>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="使用chrome自带的截图功能"><a href="#使用chrome自带的截图功能" class="headerlink" title="使用chrome自带的截图功能"></a>使用chrome自带的截图功能</h2><ul>
+<li><strong>前提</strong><ul>
+<li>要想使用截图功能，你需要首先确保 Chrome 已升级至 59 或更高版本</li>
+<li><img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t8h664icj30m40bmgm3.jpg" alt="02"></li>
 </ul>
 </li>
-<li><p>二次探测（Quadratic probing）</p>
-</li>
-</ul>
-<blockquote>
-<p>所谓二次探测，跟线性探测很像，线性探测的下标序列就是 $hash(key)+0$，$hash(key)+1$，$hash(key)+2$……而二次探测的下标序列就是 $hash(key)+0$，$hash(key)+1^2$，$hash(key)+2^2$……</p>
-</blockquote>
-<ul>
-<li>双重散列（Double hashing）</li>
-</ul>
-<blockquote>
-<p>使用一组散列函数，如果第一个散列函数计算出来没有空位就用第二个散列函数，以此类推……</p>
-</blockquote>
-<ul>
-<li>用装载因子（load factor）来表示空位多少<br><code>散列表的装载因子 = 填入表中的元素个数 / 散列表的长度</code>  <ul>
-<li>所以这可以用来衡量是否需要扩容啊，快要满的时候就可以扩容了。</li>
+<li><strong>步骤</strong><ul>
+<li>首先按下 F12快捷键，召唤出调试界面。<img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t8klyk68j30sy0mz139.jpg" alt="03"></li>
+<li>随后，按下 Ctrl + Shift + P，输入命令 Capture full size screenshot（只输full）<img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t8uyigv0j30t20n8al2.jpg" alt="04"></li>
+<li>回车，Chrome 就会自动截取整个网页内容并<strong>保存至本地(在下载内容里)</strong></li>
 </ul>
 </li>
 </ul>
-<h3 id="链表法"><a href="#链表法" class="headerlink" title="链表法"></a>链表法</h3><blockquote>
-<p>链表法是一种更加常用的散列冲突解决办法，相比开放寻址法，它要简单很多。在散列表中，每个“桶（bucket）”或者“槽（slot）”会对应一条链表，所有散列值相同的元素我们都放到相同槽位对应的链表中。</p>
-</blockquote>
-<ul>
-<li>我的理解<ul>
-<li>其实就是扩容散列值对应的散列表的那行的解决办法</li>
-<li>用链表的方式可以存更多的数据在这行（散列值对应的）</li>
-<li>插入散列表的时候就要找到散列值对应的槽往链表的最后面插入</li>
-<li>查找和删除就只要找到散列值对应的槽然后遍历</li>
+<h2 id="嫌弃-↑太麻烦"><a href="#嫌弃-↑太麻烦" class="headerlink" title="嫌弃 ↑太麻烦"></a>嫌弃 ↑太麻烦</h2><ul>
+<li>安装chrome扩展<ul>
+<li>也需要版本支持</li>
 </ul>
 </li>
-<li>我的联想<ul>
-<li>那么既然可以用链表那也可以用其他链式结构的数据结构</li>
-<li>那么可以用顺序结构吗？<em>这样还能随机访问</em></li>
+<li><img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t8uy91ytj30sk0mwwk8.jpg" alt="05"></li>
+<li><img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t8xx54nwj30s80eutgk.jpg" alt="06"></li>
+</ul>
+<h2 id="还是嫌弃-↑太麻烦"><a href="#还是嫌弃-↑太麻烦" class="headerlink" title="还是嫌弃 ↑太麻烦"></a>还是嫌弃 ↑太麻烦</h2><ul>
+<li>登录<a href="https://zh.pickfrom.net/" target="_blank" rel="noopener">https://zh.pickfrom.net/</a><ul>
+<li>或者点击<a href="https://zh.pickfrom.net/" target="_blank" rel="noopener">网页长截图</a></li>
+<li><img src="https://ws1.sinaimg.cn/large/007CEatygy1g1t92kpok8j30si0ksmyl.jpg" alt="07"></li>
 </ul>
 </li>
+<li>输入链接，稍等一会就可以下载网页图片</li>
 </ul>
-<h2 id="设计散列函数"><a href="#设计散列函数" class="headerlink" title="设计散列函数"></a>设计散列函数</h2><blockquote>
-<p>首先，散列函数的设计不能太复杂。过于复杂的散列函数，势必会消耗很多计算时间，也就间接的影响到散列表的性能。其次，散列函数生成的值要尽可能随机并且均匀分布，这样才能避免或者最小化散列冲突，而且即便出现冲突，散列到每个槽里的数据也会比较平均，不会出现某个槽内数据特别多的情况。<br>实际工作中，我们还需要综合考虑各种因素。这些因素有关键字的长度、特点、分布、还有散列表的大小等。散列函数各式各样，我举几个常用的、简单的散列函数的设计方法，让你有个直观的感受。<br>实际上，散列函数的设计方法还有很多，比如直接寻址法、平方取中法、折叠法、随机数法等，这些你只要了解就行了，不需要全都掌握。（我感觉这些没有应用场景，过于苍白)</p>
-</blockquote>
-<p>to be continued<br><strong>2019年3月8日 20点28分</strong></p>
 <hr>
-<h3 id="感谢您的阅读，请指正我的错误"><a href="#感谢您的阅读，请指正我的错误" class="headerlink" title="感谢您的阅读，请指正我的错误"></a>感谢您的阅读，请指正我的错误</h3>
+<p><code>to be continued</code><br><strong>2019年4月6日 21点50分</strong></p>
+<hr>
+<h1 id="感谢您的阅读，请指正出错误"><a href="#感谢您的阅读，请指正出错误" class="headerlink" title="感谢您的阅读，请指正出错误"></a>感谢您的阅读，请指正出错误</h1>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -203,7 +173,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#散列表"><span class="toc-text">散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#散列函数"><span class="toc-text">散列函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列冲突"><span class="toc-text">散列冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放寻址法"><span class="toc-text">开放寻址法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链表法"><span class="toc-text">链表法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计散列函数"><span class="toc-text">设计散列函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正我的错误"><span class="toc-text">感谢您的阅读，请指正我的错误</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Method"><span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用chrome自带的截图功能"><span class="toc-text">使用chrome自带的截图功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嫌弃-↑太麻烦"><span class="toc-text">嫌弃 ↑太麻烦</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#还是嫌弃-↑太麻烦"><span class="toc-text">还是嫌弃 ↑太麻烦</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
   </div>
 </aside>
   
@@ -212,7 +182,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-08-数据结构/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-04-06-tips/</a>
         </div>
       
       <div>
@@ -223,7 +193,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
+      <a href="/tags/tips/"><i class="fa fa-tags"></i>tips</a>
     
     </div>
   
@@ -338,10 +308,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-03-09-数据结构/" data-enable="true">
+    <a href="/passages/2019-04-06-leetcode/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-03-07-算法/" data-enable="true">
+    <a href="/passages/2019-04-05-DOMJudge/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
