@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Yancy">
+  
+  
+  <title>Hash（哈希与散列） | Bienvenue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="算法,数据结构,算法,">
+  
+
+  
+  <meta name="description" content="散列和哈希都是英文Hash的中文翻译关键词：抽屉原理（鸽巢原理）雪崩效应 一致性哈希">
+
+  
+
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"FQW7SJOLcjdjDB7qfsGa8f4h-gzGzoHsz","appkey":"o7k181GzanSJKYtTdMzJFRjb","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-03-01",
+    passwords: ["3abd72ec6352d6085d85e34f0478dca7d14ef8048f3c1986e28106d654713946", ],
+    is_post: true,
+    lock: false,
+    author: "Yancy",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: ""
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Bienvenue</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 不忘初心，方得始终</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/ienvenue/" target="_blank">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-16
+    </span>
+    
+      <span>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Hash（哈希与散列）
+  </h1>
+  
+  <article class="passage-article">
+    <p></p>
+
+<h1 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h1><h2 id="哈希算法的定义和原理"><a href="#哈希算法的定义和原理" class="headerlink" title="哈希算法的定义和原理"></a>哈希算法的定义和原理</h2><blockquote>
+<p>将任意长度的二进制值串映射为固定长度的二进制值串，这个映射的规则就是哈希算法<br>而通过原始数据映射之后得到的二进制值串就是哈希值</p>
+</blockquote>
+<h2 id="哈希算法的设计要求"><a href="#哈希算法的设计要求" class="headerlink" title="哈希算法的设计要求"></a>哈希算法的设计要求</h2><ul>
+<li><p>从哈希值不能反向推导出原始数据（所以哈希算法也叫单向哈希算法）</p>
+</li>
+<li><p>对输入数据非常敏感，哪怕原始数据只修改了一个 Bit，最后得到的哈希值也大不相同</p>
+</li>
+<li><p>散列冲突的概率要很小，对于不同的原始数据，哈希值相同的概率非常小</p>
+</li>
+<li><p>哈希算法的执行效率要尽量高效，针对较长的文本，也能快速地计算出哈希值</p>
+<h2 id="哈希算法的七大应用"><a href="#哈希算法的七大应用" class="headerlink" title="哈希算法的七大应用"></a>哈希算法的七大应用</h2><h3 id="安全加密"><a href="#安全加密" class="headerlink" title="安全加密"></a>安全加密</h3></li>
+</ul>
+<ul>
+<li>MD5（MD5 Message-Digest Algorithm，MD5 消息摘要算法）</li>
+<li>SHA（Secure Hash Algorithm，安全散列算法）</li>
+<li>DES（Data Encryption Standard，数据加密标准）</li>
+<li>AES（Advanced Encryption Standard，高级加密标准)</li>
+</ul>
+<p><code>哈希算法无法做到无冲突</code></p>
+<blockquote>
+<p>因为抽屉原理，11个苹果无论怎么样放到10个抽屉里，都是放不下的，最少也是有一个抽屉有两个苹果。<br>同理，想到了367个人肯定也至少会有两个人同一天生日(高中老师讲的时候不告诉原理叫啥，虽然这个很浅显易懂)<br>哈希值是有长度的限制所以总的哈希值数目是有限（md5就是128位的二进制串，最多也就表示$2^{128}$）的而数据是无限的。<br><code>哈希表是有损的，所以只要是哈希表必然有冲突</code></p>
+</blockquote>
+<h3 id="唯一标识"><a href="#唯一标识" class="headerlink" title="唯一标识"></a>唯一标识</h3><blockquote>
+<p>通过哈希算法计算出数据的唯一标识，从而用于高效检索数据。</p>
+</blockquote>
+<h3 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h3><blockquote>
+<p>利用哈希算法对输入数据敏感的特点，可以对数据取哈希值，从而高效校验数据是否被篡改过。</p>
+</blockquote>
+<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><blockquote>
+<p>散列函数中用到的哈希算法更加关注散列后的值能不能平均分布，以及散列函数的执行快慢。</p>
+</blockquote>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><blockquote>
+<p>在负载均衡应用中，利用哈希算法替代映射表，可以实现一个会话粘滞的负载均衡策略。</p>
+</blockquote>
+<p>负载均衡算法有很多，比如轮询、随机、加权轮询等。那如何才能实现一个会话粘滞（session sticky）的负载均衡算法呢？<br>也就是说，需要在同一个客户端上，在一次会话中的所有请求都路由到同一个服务器上。</p>
+<h4 id="维护映射关系表"><a href="#维护映射关系表" class="headerlink" title="维护映射关系表"></a>维护映射关系表</h4><p>最直接的方法就是，维护一张映射关系表，这张表的内容是客户端 IP 地址或者会话 ID 与服务器编号的映射关系。客户端发出的每次请求，都要先在映射表中查找应该路由到的服务器编号，然后再请求编号对应的服务器。这种方法简单直观，但也有几个弊端：</p>
+<ul>
+<li>如果客户端很多，映射表可能会很大，比较浪费内存空间</li>
+<li>客户端下线、上线，服务器扩容、缩容都会导致映射失效，这样维护映射表的成本就会很大</li>
+</ul>
+<h4 id="借助哈希算法"><a href="#借助哈希算法" class="headerlink" title="借助哈希算法"></a>借助哈希算法</h4><p>可以通过哈希算法，对客户端 IP 地址或者会话 ID 计算哈希值，将取得的哈希值与服务器列表的大小进行取模运算，最终得到的值就是应该被路由到的服务器编号。就可以把同一个 IP 过来的所有请求，都路由到同一个后端服务器上。</p>
+<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><blockquote>
+<p>在数据分片应用中，通过哈希算法对处理的海量数据进行分片，多机分布式处理，可以突破单机资源的限制。</p>
+</blockquote>
+<h3 id="分布式存储"><a href="#分布式存储" class="headerlink" title="分布式存储"></a>分布式存储</h3><blockquote>
+<p>在分布式存储应用中，利用一致性哈希算法，可以解决缓存等分布式系统的扩容、缩容导致数据大量搬移的难题。</p>
+</blockquote>
+<p><a href="https://www.sohu.com/a/158141377_479559" target="_blank" rel="noopener">一致性哈希</a></p>
+<p><em>假设有 k 个机器，数据的哈希值的范围是 [0, MAX]。将整个范围划分成 m 个小区间（m 远大于 k），每个机器负责 m/k 个小区间。当有新机器加入的时候，将某几个小区间的数据，从原来的机器中搬移到新的机器中。</em></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%9B%AA%E5%B4%A9%E6%95%88%E5%BA%94" target="_blank" rel="noopener">雪崩效应</a><br><em>雪崩效应是指当输入发生最微小的改变（例如，反转一个二进制位）时，也会导致输出的不可区分性改变（输出中每个二进制位有50%的概率发生反转）。合格块密码中，无论密钥或明文的任何细微变化都必须引起密文的不可区分性改变。</em></p>
+<p><a href="https://baike.baidu.com/item/%E6%8A%BD%E5%B1%89%E5%8E%9F%E7%90%86/233776" target="_blank" rel="noopener">抽屉原理</a><br><em>桌上有十个苹果，要把这十个苹果放到九个抽屉里，无论怎样放，会发现至少会有一个抽屉里面至少放两个苹果。这一现象就是所说的“抽屉原理”。 抽屉原理的一般含义为：“如果每个抽屉代表一个集合，每一个苹果就可以代表一个元素，假如有n+1个元素放到n个集合中去，其中必定有一个集合里至少有两个元素。” 抽屉原理有时也被称为鸽巢原理。它是组合数学中一个重要的原理。</em></p>
+<hr>
+<p><code>哈希扩展出来非常多，还需要慢慢吸收</code><br><strong>2019年3月16日 17点55分</strong></p>
+<hr>
+<h3 id="感谢您的阅读，请指正错误"><a href="#感谢您的阅读，请指正错误" class="headerlink" title="感谢您的阅读，请指正错误"></a>感谢您的阅读，请指正错误</h3>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#哈希算法"><span class="toc-text">哈希算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希算法的定义和原理"><span class="toc-text">哈希算法的定义和原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希算法的设计要求"><span class="toc-text">哈希算法的设计要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希算法的七大应用"><span class="toc-text">哈希算法的七大应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安全加密"><span class="toc-text">安全加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#唯一标识"><span class="toc-text">唯一标识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据校验"><span class="toc-text">数据校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#散列函数"><span class="toc-text">散列函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#维护映射关系表"><span class="toc-text">维护映射关系表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#借助哈希算法"><span class="toc-text">借助哈希算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据分片"><span class="toc-text">数据分片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式存储"><span class="toc-text">分布式存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#感谢您的阅读，请指正错误"><span class="toc-text">感谢您的阅读，请指正错误</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: ienvenue</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-03-16-数据结构/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/数据结构/"><i class="fa fa-tags"></i>数据结构</a>
+     
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">网站推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">知识体系</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">数据结构</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://ienvenue.github.io/categories/%E7%AE%97%E6%B3%95/" target="_blank">算法</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">关注我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im/user/5c6ea335e51d453a9e47304a" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://segmentfault.com/u/ienvenue" target="_blank">思否</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: chenyangjieabc@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https:/godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/images/alipay.png" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2019-03-17-数据结构/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-03-15-数据结构/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
