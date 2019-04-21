@@ -6,7 +6,7 @@
   <meta name="author" content="Yancy">
   
   
-  <title>十四周周赛 | Bienvenue</title>
+  <title>Two City Scheduling | Bienvenue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="十四周周赛">
+  <meta name="description" content="There are 2N people a company is planning to interview. The cost of flying the i-th person to city A is costs[i][0], and the cost of flying the i-th person to city B is costs[i][1].Return the minimum cost to fly every person to a city such that exactly N people arrive in each city.">
 
   
 
@@ -110,7 +110,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-04-07
+      <i class="fa fa-calendar"></i>2019-04-21
     </span>
     
       <span>
@@ -124,15 +124,23 @@
     
   </div>
   <h1 class="passage-title">
-    十四周周赛
+    Two City Scheduling
   </h1>
   
   <article class="passage-article">
-    <h1 id="5016"><a href="#5016" class="headerlink" title="5016"></a>5016</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">auto</span> __ = []() &#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">removeOuterParentheses</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">string</span> ans = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); ++i) &#123;</span><br><span class="line">			<span class="keyword">if</span> (S[i] == <span class="string">'('</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (left &gt; <span class="number">0</span>)</span><br><span class="line">					ans += S[i];</span><br><span class="line">				++left;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (S[i] == <span class="string">')'</span>) &#123;</span><br><span class="line">				++right;</span><br><span class="line">				<span class="keyword">if</span> (right == left) &#123;</span><br><span class="line">					left = <span class="number">0</span>;</span><br><span class="line">					right = <span class="number">0</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					ans += S[i];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="1022"><a href="#1022" class="headerlink" title="1022"></a>1022</h1><p>Sum of Root To Leaf Binary Numbers</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root,<span class="keyword">int</span> last,<span class="keyword">int</span> &amp; sum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        last = ((last&lt;&lt;<span class="number">1</span>) + root-&gt;val)%MOD;</span><br><span class="line">        <span class="keyword">if</span>(!root-&gt;right&amp;&amp;!root-&gt;left)&#123;</span><br><span class="line">            sum = (sum + last)%MOD;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            dfs(root-&gt;left,last,sum);</span><br><span class="line">            dfs(root-&gt;right,last,sum);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumRootToLeaf</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> last = <span class="number">0</span>;</span><br><span class="line">        dfs(root,last,ans);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    <h1 id="1029-Two-City-Scheduling"><a href="#1029-Two-City-Scheduling" class="headerlink" title="1029.Two City Scheduling"></a>1029.Two City Scheduling</h1><blockquote>
+<p>公司计划面试 <code>2N</code> 人。第 <code>i</code> 人飞往 <code>A</code> 市的费用为 <code>costs[i][0]</code>，飞往 <code>B</code> 市的费用为 <code>costs[i][1]</code>。</p>
+</blockquote>
+<blockquote>
+<p>返回将每个人都飞到某座城市的最低费用，要求每个城市都有 <code>N</code> 人抵达<strong>。</strong></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">comp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">abs</span>(a[<span class="number">0</span>] - a[<span class="number">1</span>]) &gt;= <span class="built_in">abs</span>(b[<span class="number">0</span>] - b[<span class="number">1</span>]);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">twoCitySchedCost</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; costs)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> size = costs.size() / <span class="number">2</span>;</span><br><span class="line">		sort(costs.begin(), costs.end(), comp);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> first = <span class="number">0</span>, second = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; costs.size(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(first &lt; size &amp;&amp; second &lt; size) &#123;</span><br><span class="line">				<span class="keyword">if</span>(costs[i][<span class="number">0</span>] &lt;= costs[i][<span class="number">1</span>]) &#123;</span><br><span class="line">					first++;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					second++;</span><br><span class="line">				&#125;</span><br><span class="line">				res += min(costs[i][<span class="number">0</span>], costs[i][<span class="number">1</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(first &lt; size) &#123;</span><br><span class="line">				res += costs[i][<span class="number">0</span>];</span><br><span class="line">				first++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				second++;</span><br><span class="line">				res += costs[i][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
+<li>时间复杂度：O(nlogn)</li>
+</ul>
+<p><img src="https://i.loli.net/2019/04/21/5cbc7cb81e1bd.png" alt="01"></p>
 <hr>
-<p><code>to be 2ontinued</code><br><strong>2019年4月7日 23点05分</strong></p>
+<p><code>to be continued</code><br><strong>2019年4月21日 21点56分</strong></p>
 <hr>
 <h1 id="感谢您的阅读，请指正出错误"><a href="#感谢您的阅读，请指正出错误" class="headerlink" title="感谢您的阅读，请指正出错误"></a>感谢您的阅读，请指正出错误</h1>
   </article>
@@ -142,7 +150,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5016"><span class="toc-text">5016</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1022"><span class="toc-text">1022</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1029-Two-City-Scheduling"><span class="toc-text">1029.Two City Scheduling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#感谢您的阅读，请指正出错误"><span class="toc-text">感谢您的阅读，请指正出错误</span></a></li></ol>
   </div>
 </aside>
   
@@ -151,7 +159,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://ienvenue.github.io/passages/2019-04-07-leetcode/</a>
+          <a href target="_blank">https://ienvenue.github.io/passages/2019-04-21-leetcode/</a>
         </div>
       
       <div>
@@ -279,10 +287,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2019-04-21-leetcode/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/passages/2019-04-06-leetcode/" data-enable="true">
+    <a href="/passages/2019-04-07-leetcode/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
